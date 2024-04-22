@@ -1,6 +1,6 @@
 
 ### Read genomic surveillance outputs
-detection_df = readRDS("detection_outputs.rds")
+detection_df = readRDS("detection_outputs_threshold_F.rds")
 detection_df = detection_df[detection_df$travel_rate=="mean",]
 
 
@@ -17,7 +17,7 @@ detection_df = detection_df[!(is.na(detection_df$scenario)),]
 cd = readRDS("country_data.rds")[[1]]
 continents = cd$Continent
 countries = cd$Country
-detection_df$onsetcontinent = continents[detection_df$onsetcountry]
+detection_df$onsetcontinent = continents[detection_df$onset_country]
 
 
 #Initialize output
