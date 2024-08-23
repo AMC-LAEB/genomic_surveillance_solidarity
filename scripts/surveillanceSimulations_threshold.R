@@ -196,9 +196,9 @@ getTimesSim <- function(out, nsim, wt_beta, base_prev, min_seqrate, max_seqrate,
         
         population_size = countrydata[[1]][ctr,]$Population # Country's population size
         
-        prop_thresh = 0.001 * (1e8 / population_size) # Get threshold that the variant proportion should exceed for this country
+        prop_thresh = 0.01
         
-        if (prop_thresh > 0.01){prop_thresh = 0.01}
+        if (population_size > 1e8){prop_thresh = 0.01 * (1e8 / population_size)} # Get threshold that the variant proportion should exceed for this country
         
         wildtype_epidemic = wildtype_epidemics[ctr,] # Get country's wildtype epidemic
         
@@ -333,9 +333,9 @@ wildtype_betas = c(0.2,0.21,0.22,0.2)
 ## Travel rates
 travel_rates = c("mean")
 
-
 ## True turnaround time as time factor between collection and submission
 phis = c(1)
+
 
 ### Initialize cluster
 my.cluster <- parallel::makeCluster(
