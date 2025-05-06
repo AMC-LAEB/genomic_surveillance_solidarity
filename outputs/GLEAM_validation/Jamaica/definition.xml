@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simulation xmlns="http://www.gleamviz.org/xmlns/gleamviz_v4_0">
+  <definition name="Validation_Jamaica" type="multi-run" id="1697893173090.CB3">
+    <compartmentalModel>
+      <compartments>
+        <compartment x="115" color="#51b2b7" isSecondary="false" isTraveller="true" isCommuter="true" id="Susceptible" isCarrier="false" y="51"/>
+        <compartment x="153" color="#51b2b7" isSecondary="true" isTraveller="true" isCommuter="true" id="Infected" isCarrier="true" y="204"/>
+        <compartment x="292" color="#51b2b7" isSecondary="false" isTraveller="true" isCommuter="true" id="Recovered" isCarrier="false" y="352"/>
+      </compartments>
+      <ratioTransitions>
+        <ratioTransition source="Infected" target="Recovered" ratio="gamma" labelPosition="0.5"/>
+      </ratioTransitions>
+      <infections>
+        <infection source="Susceptible" target="Infected">
+          <infector source="Infected" x="313" ratio="beta" y="128"/>
+        </infection>
+      </infections>
+      <variables>
+        <variable name="beta" value="0.32"/>
+        <variable name="gamma" value="0.2"/>
+      </variables>
+    </compartmentalModel>
+    <parameters commutingRate="8" commutingModel="gravity" startDate="2023-08-25" runCount="10" seasonalityEnabled="false" secondaryEvents="1" flightsTimeAggregation="month" duration="200" outbreakSize="2" occupancyRate="100" seasonalityAlphaMin="0.50"/>
+    <notes/>
+    <initialCompartments>
+      <initialCompartment compartment="Susceptible" fraction="100"/>
+    </initialCompartments>
+    <seeds>
+      <seed compartment="Infected" number="10" city="492"/>
+    </seeds>
+    <resultCompartments>
+      <id>Infected</id>
+    </resultCompartments>
+    <exceptions/>
+  </definition>
+  <metadata>
+    <creationDate>2023-08-25T15:44:08</creationDate>
+    <clientVersion>7.2.2</clientVersion>
+  </metadata>
+  <extradata>
+    <userVariableOrder>beta gamma</userVariableOrder>
+  </extradata>
+</simulation>
